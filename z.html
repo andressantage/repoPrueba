@@ -24,9 +24,10 @@ async function fetchData() {
     try {
     const response = await fetch(url, options);
 	/* const result = await response.text(); */
-	const result = await response.json(); 
+	const result = await response.text();
 	const compo=document.getElementById("a1")
-    compo.innerHTML=result.title
+    compo.innerHTML=result
+    console.error(result);
   } catch (error) {
     console.error(error);
   }

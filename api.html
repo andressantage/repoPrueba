@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
+    <style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+img{
+    height: 10%;
+    width: 10%;
+}
+.s1{
+    display: flex;
+    flex-direction: row;
+
+}
+.s2{
+    width: 70%;
+    text-align: center;
+}
+.s3{
+    width: 30%;
+    text-align: center;
+} 
+.s4{
+    display: flex;
+    flex-direction: column;
+}
+.relacionados{
+    display: flex;
+    flex-direction: column;
+}
+.divRelacionados{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.navCanal{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.comentarios{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.descripcionVideo{
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+    
+
+    <!-- <input type="text" placeholder="Buscador">
+    <button id="buscar"></button> -->
+
+    <div class="container">
+        <div class="input-group mb-3">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/640px-Logo_of_YouTube_%282015-2017%29.svg.png" alt="">
+          <input type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar" aria-describedby="button-addon2">
+          <button class="btn btn-outline-primary" type="button" id="button-addon2">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </div>
+
+<div class="s1">
+    <div class="s2">
+        <div class="s4">
+            <h1>VIDEO</h1>
+            <h1 id="a1">TITULO VIDEO</h1>
+            <div class="relacionados">
+                <h1>Videos relacionados</h1>
+                <div class="divRelacionados">
+                    <p>atras</p>
+                    <h1>Video 1</h1>
+                    <h1>Video 2</h1>
+                    <h1>Video 3</h1>
+                    <p>adelante</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="s3">
+        <div class="navCanal">
+            <img src="https://yt3.googleusercontent.com/s0BLxzTiC8JcXrFSwbe7Ef5eIP8DHu33a_jRqjtuhZZiEuc5P4DhJ3hreKWt4CIY8vkf3t5iL2U=s176-c-k-c0x00ffffff-no-rj" alt="">
+            <h1>Nombre canal</h1>
+        </div>
+        <div class="comentarios">
+            <h1>Comentarios</h1>
+            <p id="c1">c1</p>
+            <p id="c2">c2</p>
+            <p>c3</p>
+            <p>c4</p>
+            <p>c5</p>
+            <p>c6</p>
+        </div>
+        <h1>Descripcion del video</h1>
+    </div>
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+const urlDetails = 'https://youtube138.p.rapidapi.com/video/details/?id=vbkdJdRkEhM&hl=en&gl=US/';
+const urlComentarios = 'https://youtube138.p.rapidapi.com/video/comments/?id=vbkdJdRkEhM&hl=en&gl=US';
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '72a70e2a7emsh0f4be0bc1ad4ac4p148cd2jsn969a642fa624',
+		'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
+	}
+};
+
+async function fetchData(url,x) {
+    try {
+    const response = await fetch(url, options);
+	/* const result = await response.text(); */
+	const result = await response.json(); 
+	x.innerHTML=result.title
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+const compo=document.getElementById("a1")
+fetchData(urlDetails,compo)
+
+
+async function fetchData1(url,x,i) {
+    try {
+    const response = await fetch(url, options);
+	/* const result = await response.text(); */
+	const result = await response.json(); 
+	x.innerHTML=result.comments[i].content
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+const c1=document.getElementById("c1")
+const c2=document.getElementById("c2")
+fetchData1(urlComentarios,c1,0)
+fetchData1(urlComentarios,c2,1)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+WebComponents (elementos reutilizables)=HTML+CSS+JS
+
+Ventajas de usar WebComponents:
+- facil de utilizar
+- encapsulacion
+- interoperabilidad (facil intercambio de informacion con otros sitemas)
+- facil de mantenimiento
+
+Caracteristicas:
+- no necesitan frameworks o librerias
+- custom elements
+- templates
+- shadow dom
+- modules
+- css scopes/parts
+
+Custom elements (elementos personalizados):
+
+
