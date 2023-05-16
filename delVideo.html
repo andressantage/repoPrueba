@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h1 id="a1"></h1>
+    <img id="a2" src="">
+    <h1 id="a3"></h1>
+<script>
+const url = 'https://youtube138.p.rapidapi.com/video/details/?id=te8X35c_qKc&hl=en&gl=US';
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '72a70e2a7emsh0f4be0bc1ad4ac4p148cd2jsn969a642fa624',
+		'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
+	}
+};
+
+
+async function fetchData() {
+    try {
+    const response = await fetch(url, options);
+	const result = await response.json();
+	const compo1=document.getElementById("a1")
+    const compo2=document.getElementById("a2")
+    const compo3=document.getElementById("a3")
+
+    compo1.innerHTML=result.title //titulo del video
+    compo2.src=result.author.avatar[2].url //icono del canal
+    compo3.innerHTML=result.author.title //nombre del canal
+  } catch (error) {
+    console.error(error);
+  }
+}
+fetchData()
+	</script>
+</body>
+</html>

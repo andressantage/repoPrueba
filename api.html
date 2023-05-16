@@ -13,6 +13,18 @@
     padding: 0;
     box-sizing: border-box;
 }
+h1{
+    font-size: 12px;
+}
+h2{
+    font-size: 8px;
+}
+h4{
+    font-size: 8px;
+}
+p{
+    font-size: 12px;
+}
 img{
     height: 10%;
     width: 10%;
@@ -20,7 +32,8 @@ img{
 .s1{
     display: flex;
     flex-direction: row;
-
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 .s2{
     width: 70%;
@@ -29,10 +42,30 @@ img{
 .s3{
     width: 30%;
     text-align: center;
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 } 
 .s4{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.s5{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.s6{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .relacionados{
     display: flex;
@@ -42,6 +75,7 @@ img{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
 }
 .navCanal{
     display: flex;
@@ -56,20 +90,20 @@ img{
 .descripcionVideo{
     text-align: center;
 }
+.videoI{
+    width: 25%;
+    height: 1%;
+    margin: 1px
+}
     </style>
 </head>
 <body>
-    
-
-    <!-- <input type="text" placeholder="Buscador">
-    <button id="buscar"></button> -->
-
     <div class="container">
         <div class="input-group mb-3">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/640px-Logo_of_YouTube_%282015-2017%29.svg.png" alt="">
           <input type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar" aria-describedby="button-addon2">
           <button class="btn btn-outline-primary" type="button" id="button-addon2">
-            <i class="bi bi-search"></i>
+            Buscar
           </button>
         </div>
       </div>
@@ -77,16 +111,20 @@ img{
 <div class="s1">
     <div class="s2">
         <div class="s4">
-            <h1>VIDEO</h1>
+            <iframe width="700" height="393" src="https://www.youtube.com/embed/te8X35c_qKc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             <h1 id="a1">TITULO VIDEO</h1>
             <div class="relacionados">
                 <h1>Videos relacionados</h1>
                 <div class="divRelacionados">
-                    <p>atras</p>
-                    <h1>Video 1</h1>
-                    <h1>Video 2</h1>
-                    <h1>Video 3</h1>
-                    <p>adelante</p>
+                    <p>'<'</p>
+                    
+                    <iframe id="i1" class="videoI" src="https://www.youtube.com/embed/Rb0UmrCXxVA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                    <iframe id="i2" class="videoI" src="https://www.youtube.com/embed/Rb0UmrCXxVA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                    <iframe id="i3" class="videoI" src="https://www.youtube.com/embed/Rb0UmrCXxVA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                    <p>'>'</p>
                 </div>
             </div>
         </div>
@@ -94,65 +132,22 @@ img{
 
     <div class="s3">
         <div class="navCanal">
-            <img src="https://yt3.googleusercontent.com/s0BLxzTiC8JcXrFSwbe7Ef5eIP8DHu33a_jRqjtuhZZiEuc5P4DhJ3hreKWt4CIY8vkf3t5iL2U=s176-c-k-c0x00ffffff-no-rj" alt="">
-            <h1>Nombre canal</h1>
+            <img id="a2" src="" alt="">
+            <h1 id="a3">Nombre canal</h1>
         </div>
         <div class="comentarios">
             <h1>Comentarios</h1>
-            <p id="c1">c1</p>
-            <p id="c2">c2</p>
-            <p>c3</p>
-            <p>c4</p>
-            <p>c5</p>
-            <p>c6</p>
+            <div id="coment">
+                
+                
+            </div>
         </div>
-        <h1>Descripcion del video</h1>
+        <h1 id="d1">Descripcion del video</h1>
     </div>
 </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
-    <script>
-const urlDetails = 'https://youtube138.p.rapidapi.com/video/details/?id=vbkdJdRkEhM&hl=en&gl=US/';
-const urlComentarios = 'https://youtube138.p.rapidapi.com/video/comments/?id=vbkdJdRkEhM&hl=en&gl=US';
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '72a70e2a7emsh0f4be0bc1ad4ac4p148cd2jsn969a642fa624',
-		'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
-	}
-};
 
-async function fetchData(url,x) {
-    try {
-    const response = await fetch(url, options);
-	/* const result = await response.text(); */
-	const result = await response.json(); 
-	x.innerHTML=result.title
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-const compo=document.getElementById("a1")
-fetchData(urlDetails,compo)
-
-
-async function fetchData1(url,x,i) {
-    try {
-    const response = await fetch(url, options);
-	/* const result = await response.text(); */
-	const result = await response.json(); 
-	x.innerHTML=result.comments[i].content
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-const c1=document.getElementById("c1")
-const c2=document.getElementById("c2")
-fetchData1(urlComentarios,c1,0)
-fetchData1(urlComentarios,c2,1)
-
-    </script>
+   <script src="script.js"></script> 
 </body>
 </html>
